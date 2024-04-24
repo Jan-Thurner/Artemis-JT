@@ -10,6 +10,11 @@ import com.thoughtworks.qdox.model.JavaMethod;
 
 public class AnalysisOfEndpointConnections {
 
+    /**
+     * This is the main method which makes use of addNum method.
+     *
+     * @param args Unused.
+     */
     public static void main(String[] args) {
         JavaProjectBuilder builder = new JavaProjectBuilder();
         for (String filePath : args) {
