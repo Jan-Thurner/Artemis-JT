@@ -84,8 +84,6 @@ spotless {
         removeUnusedImports()
         trimTrailingWhitespace()
     }
-    dependsOn ':nodeSetup'
-    dependsOn ':npmSetup'
 }
 
 defaultTasks "bootRun"
@@ -547,6 +545,10 @@ tasks.named("dependencyUpdates").configure {
     rejectVersionIf {
         isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
     }
+}
+
+tasks.named('spotlessJava').configure {
+    dependsOn ':nodeSetup', ':npmSetup'
 }
 
 // Available commands:
