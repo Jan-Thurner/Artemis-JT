@@ -47,7 +47,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       - name: Run QDox analysis
         run: java -cp build/libs/*:. src/main/java/analysisOfEndpointConnections/AnalysisOfEndpointConnections.java $(cat modified_files.txt)
