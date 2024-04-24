@@ -84,6 +84,8 @@ spotless {
         removeUnusedImports()
         trimTrailingWhitespace()
     }
+    dependsOn ':nodeSetup'
+    dependsOn ':npmSetup'
 }
 
 defaultTasks "bootRun"
