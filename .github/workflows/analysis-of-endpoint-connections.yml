@@ -23,6 +23,11 @@ jobs:
         run: |
           git diff --name-only origin/${{ github.event.pull_request.base.ref }} HEAD > modified_files.txt
 
+      - name: print Git diff
+        run: |
+          git diff origin/${{ github.event.pull_request.base.ref }} HEAD > git_diff.txt
+            cat git_diff.txt
+
       - name: Display modified files
         run: |
           echo "Modified files in this pull request:"
