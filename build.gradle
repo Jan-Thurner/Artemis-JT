@@ -427,7 +427,7 @@ dependencies {
     // ---- ANALYSIS OF ENDPOINT CONNECTION DEPENDENCIES ----
 
     // Library for testing RESTful services
-    implementation 'com.thoughtworks.qdox:qdox:2.0-M9'
+//    implementation 'com.thoughtworks.qdox:qdox:2.0-M9'
 
 
     // ---- TEST DEPENDENCIES ----
