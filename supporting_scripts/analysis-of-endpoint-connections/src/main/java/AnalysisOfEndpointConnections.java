@@ -50,7 +50,7 @@ public class AnalysisOfEndpointConnections {
         }
     }
 
-    private static void analyzeClientRESTCalls (String[] filePaths) {
+    private static void analyzeClientRESTCalls(String[] filePaths) {
 
     }
 }
