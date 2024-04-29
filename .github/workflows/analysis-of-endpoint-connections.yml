@@ -51,14 +51,11 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
 
-      - name: Grant execute permission for gradlew
+      - name: Grant execute permission for gradlew #TODO: Remove this step if gradlew is already executable
         run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build -x test
-
-      - name: Output build/libs folder
-        run: ls build/libs
 
       - name: Run QDox analysis
         run: java -cp supporting_scripts/analysis-of-endpoint-connections/build/classes/java/main analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
