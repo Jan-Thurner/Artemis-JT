@@ -53,4 +53,4 @@ jobs:
         run: ls build/libs
 
       - name: Run QDox analysis
-        run: java -cp ../../build/classes/java/main analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
+        run: java -cp build/classes/java/main analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
