@@ -55,7 +55,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build -x test
+        run: ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build
 
       - name: Run QDox analysis
-        run: java -cp supporting_scripts/analysis-of-endpoint-connections/build/classes/java/main analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
+        run: java -cp "supporting_scripts/analysis-of-endpoint-connections/build/classes/java/main:libs/*" analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
+#        run: java -cp supporting_scripts/analysis-of-endpoint-connections/build/classes/java/main analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
