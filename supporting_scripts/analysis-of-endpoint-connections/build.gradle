@@ -12,6 +12,9 @@ repositories {
 dependencies {
     implementation 'com.thoughtworks.qdox:qdox:2.0-M9'
     testImplementation 'junit:junit:4.13.2'
+
+    // Library for testing RESTful services
+//    implementation 'com.thoughtworks.qdox:qdox:2.0-M9'
 }
 
 test {
