@@ -61,5 +61,3 @@ jobs:
         run: |
          ./gradlew :supporting_scripts:analysis-of-endpoint-connections:shadowJar
          java -jar supporting_scripts/analysis-of-endpoint-connections/build/libs/analysis-of-endpoint-connections-1.0-SNAPSHOT-all.jar $(cat modified_files.txt)
-#        run: java -cp "supporting_scripts/analysis-of-endpoint-connections/build/classes/java/main:supporting_scripts/analysis-of-endpoint-connections/build/libs/*" analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
-#        run: java -cp supporting_scripts/analysis-of-endpoint-connections/build/classes/java/main analysisOfEndpointConnections.AnalysisOfEndpointConnections $(cat modified_files.txt)
