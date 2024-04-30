@@ -1,5 +1,3 @@
-package analysisOfEndpointConnections;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,7 +19,7 @@ public class AnalysisOfEndpointConnections {
         testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
         testArray[1] = "src/main/webapp/app/course/tutorial-groups/services/tutorial-group-free-period.service.ts";
 
-        String[] serverFiles = Arrays.stream(args).filter(filePath -> filePath.endsWith(".java")).toArray(String[]::new);
+        String[] serverFiles = Arrays.stream(testArray).filter(filePath -> filePath.endsWith(".java")).toArray(String[]::new);
 
         analyzeServerEndpoints(serverFiles);
         analyzeClientRESTCalls(testArray);
