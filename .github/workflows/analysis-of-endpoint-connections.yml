@@ -23,26 +23,14 @@ jobs:
         run: |
           git diff --name-only origin/${{ github.event.pull_request.base.ref }} HEAD > modified_files.txt
 
-      - name: print Git diff
-        run: |
-          git diff origin/${{ github.event.pull_request.base.ref }} HEAD > git_diff.txt
-            cat git_diff.txt
-
-      - name: Display modified files
-        run: |
-          echo "Modified files in this pull request:"
-          cat modified_files.txt
-
       - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
           java-version: '21'
           distribution: 'adopt'
 
-      - name: Build with Gradle
-        run: ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build
-
-      - name: Run QDox analysis |
+      - name: Build and run analysis-of-endpoint-connections
         run: |
+         ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build
          ./gradlew :supporting_scripts:analysis-of-endpoint-connections:shadowJar
          java -jar supporting_scripts/analysis-of-endpoint-connections/build/libs/analysis-of-endpoint-connections-1.0-SNAPSHOT-all.jar $(cat modified_files.txt)
