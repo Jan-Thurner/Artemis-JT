@@ -541,10 +541,6 @@ tasks.named("dependencyUpdates").configure {
     }
 }
 
-//tasks.named('spotlessJava').configure {
-//    dependsOn ':nodeSetup', ':npmSetup'
-//}
-
 // Available commands:
 //
 // 1) Build production:                             ./gradlew -Pprod -Pwar clean bootWar
