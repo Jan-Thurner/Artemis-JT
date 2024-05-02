@@ -19,6 +19,7 @@ public class AnalysisOfEndpointConnections {
      */
     public static void main(String[] args) {
         String[] serverFiles = Arrays.stream(args).filter(filePath -> filePath.endsWith(".java")).toArray(String[]::new);
+
         analyzeServerEndpoints(serverFiles);
     }
 
@@ -33,7 +34,7 @@ public class AnalysisOfEndpointConnections {
             Optional<JavaAnnotation> requestMappingOptional = javaClass.getAnnotations().stream()
                 .filter(annotation ->
                     annotation.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")
-                    && annotation.getProperty("value").equals("RequestMapping"))
+                    && annotation.getType().getName().equals("RequestMapping"))
                 .findFirst();
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
@@ -46,10 +47,18 @@ public class AnalysisOfEndpointConnections {
                         System.out.println("Path: " + annotation.getProperty("value"));
                         System.out.println("Class: " + javaClass.getFullyQualifiedName());
                         System.out.println("Line: " + method.getLineNumber());
+                        var annotations = method.getAnnotations().stream()
+                            .filter(a -> !a.equals(annotation))
+                            .map(a -> a.getType().getName()).toList();
+                        System.out.println("Other annotations: " + annotations);
                         System.out.println("---------------------------------------------------");
                     }
                 }
             }
         }
+    }
+
+    private static void analyzeClientRESTCalls(String[] filePaths) {
+
     }
 }
