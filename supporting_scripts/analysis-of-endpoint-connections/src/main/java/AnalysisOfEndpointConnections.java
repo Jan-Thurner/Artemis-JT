@@ -1,5 +1,3 @@
-package analysisOfEndpointConnections;
-
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,7 +16,10 @@ public class AnalysisOfEndpointConnections {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        String[] serverFiles = Arrays.stream(args).filter(filePath -> filePath.endsWith(".java")).toArray(String[]::new);
+//        String[] testArray = new String[2];
+//        testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
+//        testArray[1] = "src/main/java/de/tum/in/www1/artemis/web/rest//TutorialGroupFreePeriodResource.java";
+        String[] serverFiles = Arrays.stream(args).filter(filePath -> new File(filePath).exists() && filePath.endsWith(".java")).toArray(String[]::new);
 
         analyzeServerEndpoints(serverFiles);
     }
