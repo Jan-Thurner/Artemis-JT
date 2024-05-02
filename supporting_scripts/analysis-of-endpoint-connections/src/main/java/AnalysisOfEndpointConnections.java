@@ -3,6 +3,7 @@ package analysisOfEndpointConnections;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.model.JavaAnnotation;
@@ -35,9 +36,15 @@ public class AnalysisOfEndpointConnections {
 
         Collection<JavaClass> classes = builder.getClasses();
         for (JavaClass javaClass : classes) {
+            Optional<JavaAnnotation> requestMappingOptional = javaClass.getAnnotations().stream()
+                .filter(annotaion ->
+                    annotaion.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")
+                    && annotaion.getProperty("value").equals("RequestMapping"))
+                .findFirst();
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
                     if (annotation.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")) {
+                        requestMappingOptional.isPresent()? System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"))
                         System.out.println("Endpoint: " + method.getName());
                         System.out.println("HTTP Method: " + annotation.getType().getName());
                         System.out.println("Path: " + annotation.getProperty("value"));
