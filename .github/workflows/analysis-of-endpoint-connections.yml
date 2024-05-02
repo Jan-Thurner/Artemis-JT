@@ -33,19 +33,11 @@ jobs:
           echo "Modified files in this pull request:"
           cat modified_files.txt
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-
       - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
           java-version: '21'
           distribution: 'adopt'
-
-#      - name: Grant execute permission for gradlew #TODO: Remove this step if gradlew is already executable
-#        run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build
