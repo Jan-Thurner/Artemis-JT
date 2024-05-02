@@ -3,6 +3,9 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.0'
 }
 
+group 'de.tum.in.www1.artemis'
+version '1.0-SNAPSHOT'
+
 repositories {
     mavenCentral()
 }
