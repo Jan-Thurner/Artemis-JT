@@ -424,11 +424,11 @@ dependencies {
     checkstyle "com.puppycrawl.tools:checkstyle:${checkstyle_version}"
 
 
-    // ---- ANALYSIS OF ENDPOINT CONNECTION DEPENDENCIES ----
-
-    // Library for testing RESTful services
-    implementation 'com.thoughtworks.qdox:qdox:2.0-M9'
-
+//    // ---- ANALYSIS OF ENDPOINT CONNECTION DEPENDENCIES ----
+//
+//    // Library for testing RESTful services
+//    implementation 'com.thoughtworks.qdox:qdox:2.0-M9'
+//
 
     // ---- TEST DEPENDENCIES ----
 
