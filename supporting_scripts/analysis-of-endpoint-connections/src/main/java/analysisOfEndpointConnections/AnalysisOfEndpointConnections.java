@@ -11,7 +11,7 @@ import com.thoughtworks.qdox.model.JavaAnnotation;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaMethod;
 
-public class AnalysisOfEndpointConnectionsServer {
+public class AnalysisOfEndpointConnections {
 
     /**
      * This is the main method which makes use of addNum method.
