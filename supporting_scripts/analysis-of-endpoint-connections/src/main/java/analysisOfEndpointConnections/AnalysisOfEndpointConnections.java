@@ -3,6 +3,7 @@ package analysisOfEndpointConnections;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import com.thoughtworks.qdox.JavaProjectBuilder;
@@ -27,6 +28,21 @@ public class AnalysisOfEndpointConnections {
     }
 
     private static void analyzeServerEndpoints(String[] filePaths) {
+        final List<String> httpMethodFullNames = List.of(
+            "org.springframework.web.bind.annotation.GetMapping",
+            "org.springframework.web.bind.annotation.PostMapping",
+            "org.springframework.web.bind.annotation.PutMapping",
+            "org.springframework.web.bind.annotation.DeleteMapping",
+            "org.springframework.web.bind.annotation.PatchMapping"
+        );
+        final String requestMappingFullName = "org.springframework.web.bind.annotation.RequestMapping";
+//            {
+//            "org.springframework.web.bind.annotation.GetMapping",
+//            "org.springframework.web.bind.annotation.PostMapping",
+//            "org.springframework.web.bind.annotation.PutMapping",
+//            "org.springframework.web.bind.annotation.DeleteMapping",
+//            "org.springframework.web.bind.annotation.PatchMapping"
+//        };
         JavaProjectBuilder builder = new JavaProjectBuilder();
         for (String filePath : filePaths) {
             builder.addSourceTree(new File(filePath));
@@ -36,12 +52,11 @@ public class AnalysisOfEndpointConnections {
         for (JavaClass javaClass : classes) {
             Optional<JavaAnnotation> requestMappingOptional = javaClass.getAnnotations().stream()
                 .filter(annotation ->
-                    annotation.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")
-                    && annotation.getType().getName().equals("RequestMapping"))
+                    annotation.getType().getFullyQualifiedName().equals(requestMappingFullName))
                 .findFirst();
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
-                    if (annotation.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")) {
+                    if (httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName())) {
                         if (requestMappingOptional.isPresent()) {
                             System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"));
                         };
