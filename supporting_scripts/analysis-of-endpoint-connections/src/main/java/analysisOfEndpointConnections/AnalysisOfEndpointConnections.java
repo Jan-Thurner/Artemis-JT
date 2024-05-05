@@ -36,13 +36,6 @@ public class AnalysisOfEndpointConnections {
             "org.springframework.web.bind.annotation.PatchMapping"
         );
         final String requestMappingFullName = "org.springframework.web.bind.annotation.RequestMapping";
-//            {
-//            "org.springframework.web.bind.annotation.GetMapping",
-//            "org.springframework.web.bind.annotation.PostMapping",
-//            "org.springframework.web.bind.annotation.PutMapping",
-//            "org.springframework.web.bind.annotation.DeleteMapping",
-//            "org.springframework.web.bind.annotation.PatchMapping"
-//        };
         JavaProjectBuilder builder = new JavaProjectBuilder();
         for (String filePath : filePaths) {
             builder.addSourceTree(new File(filePath));
