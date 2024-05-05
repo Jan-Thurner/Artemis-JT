@@ -47,9 +47,9 @@ jobs:
 
       - name: Build analysis-of-endpoint-connections-server
         run: |
-         ./gradlew :supporting_scripts:analysis-of-endpoint-connections-server:build
-         ./gradlew :supporting_scripts:analysis-of-endpoint-connections-server:shadowJar
+         ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build
+         ./gradlew :supporting_scripts:analysis-of-endpoint-connections:shadowJar
 
       - name: run analysis-of-endpoint-connections
         run: |
-          java -jar supporting_scripts/analysis-of-endpoint-connections/build/libs/analysis-of-endpoint-connections-server-1.0-SNAPSHOT-all.jar $(cat modified_files.txt)
+          java -jar supporting_scripts/analysis-of-endpoint-connections/build/libs/analysis-of-endpoint-connections-1.0-SNAPSHOT-all.jar $(cat modified_files.txt)
