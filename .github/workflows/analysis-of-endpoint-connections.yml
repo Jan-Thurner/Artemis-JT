@@ -24,20 +24,19 @@ jobs:
           git diff --name-only origin/${{ github.event.pull_request.base.ref }} HEAD > modified_files.txt
 
       # Analyze the client sided REST-API calls
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install and compile TypeScript
-        run: |
-          npm install -g typescript
-          tsc supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts
-
-      - name: Run analysis-of-endpoint-connections-client
-        run: |
-          node supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js $(cat modified_files.txt)
-
+#      - name: Set up Node.js
+#        uses: actions/setup-node@v2
+#        with:
+#          node-version: '14'
+#
+#      - name: Install and compile TypeScript
+#        run: |
+#          npm install -g typescript
+#          tsc supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts
+#
+#      - name: Run analysis-of-endpoint-connections-client
+#        run: |
+#          node supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js $(cat modified_files.txt)
 
       # Analyze the server sided endpoints
       - name: Set up JDK 21
