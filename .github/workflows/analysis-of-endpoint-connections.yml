@@ -32,7 +32,7 @@ jobs:
       - name: Install and compile TypeScript
         run: |
           npm install -g typescript
-          npm install --save-dev @types/node
+#          npm install --save-dev @types/node
           tsc supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts
 
       - name: Run analysis-of-endpoint-connections-client
