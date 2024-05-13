@@ -32,8 +32,7 @@ jobs:
       - name: Install npm packages
         run: |
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
-          npm install
-          npm install esm
+          npm install --save esm
           npm install --save-dev @types/node
           npm install --save typescript undici-types
 
@@ -44,6 +43,7 @@ jobs:
 
       - name: Run analysis-of-endpoint-connections-client
         run: |
+          node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js
           node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js $(cat modified_files.txt)
 
       # Analyze the server sided endpoints
