@@ -29,14 +29,10 @@ jobs:
         with:
           node-version: '20.8.0'
 
-      - name: Install npm packages
-        run: |
-          cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
-          npm install
-
       - name: Install and compile TypeScript
         run: |
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
+          npm install
           npm install typescript
           tsc -p tsconfig.analysisOfEndpointConnections.json
 
