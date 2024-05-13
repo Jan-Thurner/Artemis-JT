@@ -5,6 +5,9 @@
   "description": "Parses Typescript files and generates a report of all the endpoint connections in the file.",
   "main": "AnalysisOfEndpointConnectionsClient.ts",
   "license": "ISC",
+  "scripts": {
+    "start": "node -r esm AnalysisOfEndpointConnectionsClient.ts"
+  },
   "dependencies": {
     "esm": "^3.2.25",
     "typescript": "^5.4.5"
