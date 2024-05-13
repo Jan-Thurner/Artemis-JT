@@ -6,6 +6,9 @@ const fileNames = process.argv.slice(2);
 const testFileNames = ["src/main/webapp/app/course/tutorial-groups/services/tutorial-group-free-period.service.ts"];
 
 fileNames.forEach(fileName => {
+    console.log('-----------------------------------');
+    console.log(`Analyzing file: ${fileName}`);
+    console.log('-----------------------------------');
     // Load the TypeScript file
     const sourceFile = ts.createSourceFile(fileName, require('fs').readFileSync(fileName).toString(), ts.ScriptTarget.ES2015, true);
 
