@@ -19,6 +19,7 @@ public class AnalysisOfEndpointConnections {
      * @param args Unused.
      */
     public static void main(String[] args) {
+        System.out.println("Hello World");
          String[] testArray = new String[2];
          testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
          testArray[1] = "src/main/java/de/tum/in/www1/artemis/web/rest//TutorialGroupFreePeriodResource.java";
