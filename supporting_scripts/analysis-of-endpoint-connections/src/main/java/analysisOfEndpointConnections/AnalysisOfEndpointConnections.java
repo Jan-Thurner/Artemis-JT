@@ -44,6 +44,7 @@ public class AnalysisOfEndpointConnections {
                     .filter(annotation -> annotation.getType().getFullyQualifiedName().equals(requestMappingFullName)).findFirst();
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
+                    System.out.println("Annotation: " + annotation.getType().getFullyQualifiedName());
                     if (httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName())) {
                         if (requestMappingOptional.isPresent()) {
                             System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"));
