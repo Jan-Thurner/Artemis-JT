@@ -7,11 +7,12 @@
 //}
 
 {
-  "compilerOptions": {
-    "module": "es2020",
-    "target": "es2022",
-    "lib": ["es2022", "dom"],
-    "types": ["node"]
-  },
-  "include": ["AnalysisOfEndpointConnectionsClient.ts"]
+    "compilerOptions": {
+        "module": "es2020",
+        "target": "es2022",
+        "lib": ["es2022", "dom"],
+        "types": ["node"],
+        "moduleResolution": "node"
+    },
+    "include": ["AnalysisOfEndpointConnectionsClient.ts"]
 }

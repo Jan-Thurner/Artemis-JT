@@ -34,6 +34,7 @@ jobs:
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
           npm install
           npm install --save-dev @types/node
+          npm install --save typescript undici-types
 
       - name: Install and compile TypeScript
         run: |
