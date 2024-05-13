@@ -45,6 +45,9 @@ public class AnalysisOfEndpointConnections {
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
                     System.out.println("Annotation: " + annotation.getType().getFullyQualifiedName());
+                    if (annotation.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")) {
+                        System.out.println("Annotation: " + annotation.getType().getFullyQualifiedName());
+                    }
                     if (httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName())) {
                         if (requestMappingOptional.isPresent()) {
                             System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"));
