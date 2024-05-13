@@ -32,13 +32,14 @@ jobs:
       - name: Install npm packages
         run: |
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
-          npm install -g --save esm
-          npm install -g --save-dev @types/node
-          npm install -g --save typescript undici-types
+          npm install
+#          npm install --save esm
+#          npm install --save-dev @types/node
+#          npm install --save typescript undici-types
 
       - name: Install and compile TypeScript
         run: |
-          npm install -g typescript
+          npm install typescript
           tsc -p supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/tsconfig.analysisOfEndpointConnections.json
 
       - name: Run analysis-of-endpoint-connections-client
