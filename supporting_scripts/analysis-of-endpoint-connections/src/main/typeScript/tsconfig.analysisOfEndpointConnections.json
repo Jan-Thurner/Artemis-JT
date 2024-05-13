@@ -10,7 +10,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "lib": ["es6"],
+    "lib": ["es2022", "dom"],
     "types": ["node"]
   },
   "include": ["supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts"]
