@@ -14,5 +14,8 @@
         "types": ["node"],
         "moduleResolution": "node"
     },
-    "include": ["AnalysisOfEndpointConnectionsClient.ts"]
+    "include": ["AnalysisOfEndpointConnectionsClient.ts"],
+    "exclude": [
+        "node_modules"
+    ]
 }
