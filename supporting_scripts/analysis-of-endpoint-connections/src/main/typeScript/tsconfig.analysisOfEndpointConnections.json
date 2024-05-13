@@ -13,5 +13,5 @@
     "lib": ["es2022", "dom"],
     "types": ["node"]
   },
-  "include": ["supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts"]
+  "include": ["AnalysisOfEndpointConnectionsClient.ts"]
 }
