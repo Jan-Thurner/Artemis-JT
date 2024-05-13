@@ -32,12 +32,12 @@ jobs:
       - name: Install npm packages
         run: |
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
+          npm install typescript
           npm install
           npm install --save-dev @types/node
 
       - name: Install and compile TypeScript
         run: |
-          npm install -g typescript
           tsc supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts
 
       - name: Run analysis-of-endpoint-connections-client
