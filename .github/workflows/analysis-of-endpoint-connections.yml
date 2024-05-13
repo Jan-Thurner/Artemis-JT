@@ -40,12 +40,10 @@ jobs:
         run: |
           npm install typescript
           tsc -p supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/tsconfig.analysisOfEndpointConnections.json
-          npx ts-node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts
 
       - name: Run analysis-of-endpoint-connections-client
         run: |
-          npx ts-node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts
-#          node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js
+          node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js
 #          node -r esm supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.js $(cat modified_files.txt)
 
       # Analyze the server sided endpoints
