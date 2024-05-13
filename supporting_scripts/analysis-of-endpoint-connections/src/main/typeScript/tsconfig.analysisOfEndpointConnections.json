@@ -1,0 +1,21 @@
+//{
+//  "compilerOptions": {
+//    "lib": ["es2016", "dom"],
+//  },
+//    "sourceMap": true,
+//    "files": "supporting_scripts/analysis-of-endpoint-connections/src/main/java/analysisOfEndpointConnections/AnalysisOfEndpointConnections.java",
+//}
+
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "es2022",
+        "lib": ["es2022", "dom"],
+        "types": ["node"],
+        "moduleResolution": "node",
+    },
+    "include": ["AnalysisOfEndpointConnectionsClient.ts"],
+    "exclude": [
+        "node_modules"
+    ]
+}

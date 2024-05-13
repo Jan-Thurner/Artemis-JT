@@ -19,22 +19,18 @@ public class AnalysisOfEndpointConnections {
      * @param args Unused.
      */
     public static void main(String[] args) {
-//        String[] testArray = new String[2];
-//        testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
-//        testArray[1] = "src/main/java/de/tum/in/www1/artemis/web/rest//TutorialGroupFreePeriodResource.java";
-        String[] serverFiles = Arrays.stream(args).filter(filePath -> new File(filePath).exists() && filePath.endsWith(".java")).toArray(String[]::new);
+         String[] testArray = new String[2];
+         testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
+         testArray[1] = "src/main/java/de/tum/in/www1/artemis/web/rest//TutorialGroupFreePeriodResource.java";
+         String[] serverFiles = Arrays.stream(testArray).filter(filePath -> new File(filePath).exists() && filePath.endsWith(".java")).toArray(String[]::new);
 
-        analyzeServerEndpoints(serverFiles);
+         analyzeServerEndpoints(serverFiles);
     }
 
     private static void analyzeServerEndpoints(String[] filePaths) {
-        final List<String> httpMethodFullNames = List.of(
-            "org.springframework.web.bind.annotation.GetMapping",
-            "org.springframework.web.bind.annotation.PostMapping",
-            "org.springframework.web.bind.annotation.PutMapping",
-            "org.springframework.web.bind.annotation.DeleteMapping",
-            "org.springframework.web.bind.annotation.PatchMapping"
-        );
+        final List<String> httpMethodFullNames = List.of("org.springframework.web.bind.annotation.GetMapping", "org.springframework.web.bind.annotation.PostMapping",
+                "org.springframework.web.bind.annotation.PutMapping", "org.springframework.web.bind.annotation.DeleteMapping",
+                "org.springframework.web.bind.annotation.PatchMapping");
         final String requestMappingFullName = "org.springframework.web.bind.annotation.RequestMapping";
         JavaProjectBuilder builder = new JavaProjectBuilder();
         for (String filePath : filePaths) {
@@ -44,23 +40,20 @@ public class AnalysisOfEndpointConnections {
         Collection<JavaClass> classes = builder.getClasses();
         for (JavaClass javaClass : classes) {
             Optional<JavaAnnotation> requestMappingOptional = javaClass.getAnnotations().stream()
-                .filter(annotation ->
-                    annotation.getType().getFullyQualifiedName().equals(requestMappingFullName))
-                .findFirst();
+                    .filter(annotation -> annotation.getType().getFullyQualifiedName().equals(requestMappingFullName)).findFirst();
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
                     if (httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName())) {
                         if (requestMappingOptional.isPresent()) {
                             System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"));
-                        };
+                        }
+                        ;
                         System.out.println("Endpoint: " + method.getName());
                         System.out.println("HTTP Method: " + annotation.getType().getName());
                         System.out.println("Path: " + annotation.getProperty("value"));
                         System.out.println("Class: " + javaClass.getFullyQualifiedName());
                         System.out.println("Line: " + method.getLineNumber());
-                        var annotations = method.getAnnotations().stream()
-                            .filter(a -> !a.equals(annotation))
-                            .map(a -> a.getType().getName()).toList();
+                        var annotations = method.getAnnotations().stream().filter(a -> !a.equals(annotation)).map(a -> a.getType().getName()).toList();
                         System.out.println("Other annotations: " + annotations);
                         System.out.println("---------------------------------------------------");
                     }
