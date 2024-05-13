@@ -3,9 +3,7 @@ import * as ts from 'typescript';
 // Get the file names from the command line arguments
 const fileNames = process.argv.slice(2);
 
-const testFileNames = ["src/main/webapp/app/course/tutorial-groups/services/tutorial-group-free-period.service.ts"];
-
-testFileNames.forEach(fileName => {
+fileNames.forEach(fileName => {
     // Load the TypeScript file
     const sourceFile = ts.createSourceFile(fileName, require('fs').readFileSync(fileName).toString(), ts.ScriptTarget.ES2015, true);
 
