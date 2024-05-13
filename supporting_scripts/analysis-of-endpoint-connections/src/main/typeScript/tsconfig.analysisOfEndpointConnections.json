@@ -1,7 +1,17 @@
+//{
+//  "compilerOptions": {
+//    "lib": ["es2016", "dom"],
+//  },
+//    "sourceMap": true,
+//    "files": "supporting_scripts/analysis-of-endpoint-connections/src/main/java/analysisOfEndpointConnections/AnalysisOfEndpointConnections.java",
+//}
+
 {
   "compilerOptions": {
-    "lib": ["es2016", "dom"],
+    "module": "commonjs",
+    "target": "es6",
+    "lib": ["es6"],
+    "types": ["node"]
   },
-    "sourceMap": true,
-    "files": "supporting_scripts/analysis-of-endpoint-connections/src/main/java/analysisOfEndpointConnections/AnalysisOfEndpointConnections.java",
+  "include": ["supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/AnalysisOfEndpointConnectionsClient.ts"]
 }

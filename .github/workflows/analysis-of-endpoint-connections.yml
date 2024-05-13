@@ -33,6 +33,7 @@ jobs:
         run: |
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
           npm install
+          npm install --save-dev @types/node
 
       - name: Install and compile TypeScript
         run: |
