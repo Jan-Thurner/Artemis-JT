@@ -19,7 +19,6 @@ public class AnalysisOfEndpointConnections {
      * @param args Unused.
      */
     public static void main(String[] args) {
-        System.out.println("Hello World");
          String[] testArray = new String[2];
          testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
          testArray[1] = "src/main/java/de/tum/in/www1/artemis/web/rest//TutorialGroupFreePeriodResource.java";
@@ -44,10 +43,6 @@ public class AnalysisOfEndpointConnections {
                     .filter(annotation -> annotation.getType().getFullyQualifiedName().equals(requestMappingFullName)).findFirst();
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
-                    System.out.println("Annotation: " + annotation.getType().getFullyQualifiedName());
-                    if (annotation.getType().getFullyQualifiedName().startsWith("org.springframework.web.bind.annotation")) {
-                        System.out.println("Annotation: " + annotation.getType().getFullyQualifiedName());
-                    }
                     if (httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName())) {
                         if (requestMappingOptional.isPresent()) {
                             System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"));
