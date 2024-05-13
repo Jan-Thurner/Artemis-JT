@@ -41,7 +41,7 @@ jobs:
         run: |
           cd supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/
           npm install typescript
-          tsc -p supporting_scripts/analysis-of-endpoint-connections/src/main/typeScript/tsconfig.analysisOfEndpointConnections.json
+          tsc -p tsconfig.analysisOfEndpointConnections.json
 
       - name: Run analysis-of-endpoint-connections-client
         run: |
