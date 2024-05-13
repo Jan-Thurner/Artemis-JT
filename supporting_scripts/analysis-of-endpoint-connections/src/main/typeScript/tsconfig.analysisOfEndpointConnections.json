@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "lib": ["es2016", "dom"],
+  },
+    "sourceMap": true,
+    "files": "supporting_scripts/analysis-of-endpoint-connections/src/main/java/analysisOfEndpointConnections/AnalysisOfEndpointConnections.java",
+}
