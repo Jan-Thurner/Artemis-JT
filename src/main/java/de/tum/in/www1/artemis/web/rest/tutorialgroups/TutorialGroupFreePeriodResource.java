@@ -33,6 +33,7 @@ import de.tum.in.www1.artemis.web.rest.errors.BadRequestAlertException;
 @RestController
 @RequestMapping("api/")
 public class TutorialGroupFreePeriodResource {
+    // test change
 
     private static final String ENTITY_NAME = "tutorialGroupFreePeriod";
 
