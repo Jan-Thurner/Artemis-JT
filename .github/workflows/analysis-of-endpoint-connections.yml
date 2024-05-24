@@ -1,16 +1,5 @@
-name: Analysis-of-Endpoint-Connections
-
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-    paths:
-      - 'src/main/java/**'
-      - 'src/main/webapp/**'
-
 jobs:
-  show-modified-files:
+  analysis-of-endpoint-connections:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
@@ -29,11 +18,6 @@ jobs:
           java-version: '21'
           distribution: 'adopt'
 
-      - name: Build analysis-of-endpoint-connections
+      - name: Run analysis-of-endpoint-connections
         run: |
-         ./gradlew :supporting_scripts:analysis-of-endpoint-connections:build
-         ./gradlew :supporting_scripts:analysis-of-endpoint-connections:shadowJar
-
-      - name: run analysis-of-endpoint-connections
-        run: |
-          java -jar supporting_scripts/analysis-of-endpoint-connections/build/libs/analysis-of-endpoint-connections-1.0-SNAPSHOT-all.jar $(cat modified_files.txt)
+          ./gradlew :supporting_scripts:analysis-of-endpoint-connections:run --args="$(cat modified_files.txt)"

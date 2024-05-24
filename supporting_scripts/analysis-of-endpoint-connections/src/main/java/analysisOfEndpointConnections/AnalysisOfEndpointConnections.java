@@ -14,28 +14,27 @@ import com.thoughtworks.qdox.model.JavaMethod;
 public class AnalysisOfEndpointConnections {
 
     /**
-     * This is the main method which makes use of addNum method.
+     * This is the entry point of the analysis of server sided endpoints.
      *
-     * @param args Unused.
+     * @param args List of files that should be analyzed regarding endpoints.
      */
     public static void main(String[] args) {
-//        String[] testArray = new String[2];
-//        testArray[0] = "src/main/java/de/tum/in/www1/artemis/web/rest/tutorialgroups/TutorialGroupFreePeriodResource.java";
-//        testArray[1] = "src/main/java/de/tum/in/www1/artemis/web/rest//TutorialGroupFreePeriodResource.java";
-        String[] serverFiles = Arrays.stream(args).filter(filePath -> new File(filePath).exists() && filePath.endsWith(".java")).toArray(String[]::new);
-
+        if (args.length == 0) {
+            System.out.println("No files to analyze.");
+            return;
+        }
+        String[] filePaths = args[0].split("\n");
+        String[] serverFiles = Arrays.stream(filePaths).map(filePath -> "../../" + filePath).filter(filePath -> new File(filePath).exists() && filePath.endsWith(".java"))
+            .toArray(String[]::new);
         analyzeServerEndpoints(serverFiles);
     }
 
     private static void analyzeServerEndpoints(String[] filePaths) {
-        final List<String> httpMethodFullNames = List.of(
-            "org.springframework.web.bind.annotation.GetMapping",
-            "org.springframework.web.bind.annotation.PostMapping",
-            "org.springframework.web.bind.annotation.PutMapping",
-            "org.springframework.web.bind.annotation.DeleteMapping",
-            "org.springframework.web.bind.annotation.PatchMapping"
-        );
         final String requestMappingFullName = "org.springframework.web.bind.annotation.RequestMapping";
+        final List<String> httpMethodFullNames = List.of("org.springframework.web.bind.annotation.GetMapping", "org.springframework.web.bind.annotation.PostMapping",
+            "org.springframework.web.bind.annotation.PutMapping", "org.springframework.web.bind.annotation.DeleteMapping",
+            "org.springframework.web.bind.annotation.PatchMapping", requestMappingFullName);
+
         JavaProjectBuilder builder = new JavaProjectBuilder();
         for (String filePath : filePaths) {
             builder.addSourceTree(new File(filePath));
@@ -44,32 +43,33 @@ public class AnalysisOfEndpointConnections {
         Collection<JavaClass> classes = builder.getClasses();
         for (JavaClass javaClass : classes) {
             Optional<JavaAnnotation> requestMappingOptional = javaClass.getAnnotations().stream()
-                .filter(annotation ->
-                    annotation.getType().getFullyQualifiedName().equals(requestMappingFullName))
-                .findFirst();
+                .filter(annotation -> annotation.getType().getFullyQualifiedName().equals(requestMappingFullName)).findFirst();
+
+            boolean hasEndpoint = javaClass.getMethods().stream().flatMap(method -> method.getAnnotations().stream())
+                .anyMatch(annotation -> httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName()));
+
+            if (hasEndpoint) {
+                System.out.println("==================================================");
+                System.out.println("Class: " + javaClass.getFullyQualifiedName());
+                requestMappingOptional.ifPresent(annotation -> System.out.println("Class Request Mapping: " + annotation.getProperty("value")));
+                System.out.println("==================================================");
+            }
+
             for (JavaMethod method : javaClass.getMethods()) {
                 for (JavaAnnotation annotation : method.getAnnotations()) {
                     if (httpMethodFullNames.contains(annotation.getType().getFullyQualifiedName())) {
-                        if (requestMappingOptional.isPresent()) {
-                            System.out.println("Request Mapping: " + requestMappingOptional.get().getProperty("value"));
-                        };
                         System.out.println("Endpoint: " + method.getName());
-                        System.out.println("HTTP Method: " + annotation.getType().getName());
+                        System.out
+                            .println(requestMappingFullName.equals(annotation.getType().getFullyQualifiedName()) ? "RequestMapping·method: " + annotation.getProperty("method")
+                                : "HTTP method annotation: " + annotation.getType().getName());
                         System.out.println("Path: " + annotation.getProperty("value"));
-                        System.out.println("Class: " + javaClass.getFullyQualifiedName());
                         System.out.println("Line: " + method.getLineNumber());
-                        var annotations = method.getAnnotations().stream()
-                            .filter(a -> !a.equals(annotation))
-                            .map(a -> a.getType().getName()).toList();
+                        List<String> annotations = method.getAnnotations().stream().filter(a -> !a.equals(annotation)).map(a -> a.getType().getName()).toList();
                         System.out.println("Other annotations: " + annotations);
                         System.out.println("---------------------------------------------------");
                     }
                 }
             }
         }
-    }
-
-    private static void analyzeClientRESTCalls(String[] filePaths) {
-
     }
 }
