@@ -1,4 +1,4 @@
-package endpointanalysis;
+package de.tum.cit.artemis.endpointanalysis;
 
 import java.io.File;
 import java.util.Arrays;
