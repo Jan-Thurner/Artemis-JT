@@ -31,4 +31,4 @@ jobs:
 
       - name: Run analysis-of-endpoint-connections
         run: |
-          ./gradlew :supporting_scripts:de.tum.cit.artemis.endpointanalysis:run --args="$(cat modified_files.txt)"
+          ./gradlew :supporting_scripts:endpointanalysis:run --args="$(cat modified_files.txt)"
