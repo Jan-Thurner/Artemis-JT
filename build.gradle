@@ -197,7 +197,7 @@ repositories {
 ext["jackson.version"] = fasterxml_version
 ext["junit-jupiter.version"] = junit_version
 
-ext [ qDox = "com.thoughtworks.qdox:qdox:2.1.0" ]
+ext ["com.thoughtworks.qdox:qdox:2.1.0"] = qDox
 ext { springBootStarterWeb = "org.springframework.boot:spring-boot-starter-web:${spring_boot_version}" }
 
 dependencies {
