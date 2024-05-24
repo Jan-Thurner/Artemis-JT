@@ -1,3 +1,14 @@
+name: Analysis-of-Endpoint-Connections
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - 'src/main/java/**'
+      - 'src/main/webapp/**'
+
 jobs:
   analysis-of-endpoint-connections:
     timeout-minutes: 10
